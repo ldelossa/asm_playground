@@ -4,8 +4,8 @@ section .data
     c db -1
     d db -2
 section .text
-    global _start
-_start:
+    global main
+main:
     mov r11b, [a];
     add r11b, [b];
     add r11b, [c];

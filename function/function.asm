@@ -22,16 +22,24 @@ addFunc:
 
     ret; save to simply return as `rsp` is still pointed to return address.
 
-global _start
-_start:
-    nop
+global main
+main:
+    ; setup stack frame
+    push rbp
+    mov rbp, rsp
+
     ; setup argument registers
     ; If we did not use movzx and specify that [a] is a byte,
     ; yasm would actually copy 64bits started at `a` into rdi, which
     ; would include `b` as well and break the math operation.
     movzx rdi, byte [a]
     movzx rsi, byte [b]
+
     call addFunc
 
-    ; exit syscall
-    call sys_exit
+    ; cleanup stack
+    pop rbp
+
+    ; return success
+    xor rax, rax;
+    ret;

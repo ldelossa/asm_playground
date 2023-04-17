@@ -14,8 +14,8 @@ section .data
     f db 20;
 section .text
 %include "../lib.asm"
-global _start
-_start:
+global main
+main:
     nop;
     ; moving a byte...
     mov rax, -1     ; rax = 0xffffffffffffffff

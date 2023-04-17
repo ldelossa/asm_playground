@@ -11,7 +11,7 @@ $(foreach dir,$(ASM_DIRS),$(eval TARGETS += $(dir)/$(dir)))
 # name as the directory and a .asm extention, exists within it.
 define ASM_DIR_RECIPE
 $(target): $(target).o
-	ld -o $(target) $(target).o
+	gcc -o $(target) $(target).o
 
 $(target).o: $(target).asm
 	yasm -f elf64 -g dwarf2 -l $(target).lst $(target).asm -o $(target).o
